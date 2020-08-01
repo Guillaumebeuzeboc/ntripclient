@@ -1,0 +1,9 @@
+./ntripclient -B 38400 -D /dev/ttyUSB0 -s caster.centipede.fr -m OUIL -M http
+
+here OUIL is the Fremin mountpoint
+
+The USB to uart adaptor (5v) must be connected to the UART1 of the Ublox
+
+Tx--  --Rx
+    X
+Rx-- --Tx
