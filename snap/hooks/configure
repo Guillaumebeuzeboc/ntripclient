@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+snapctl restart "$SNAP_INSTANCE_NAME"
+

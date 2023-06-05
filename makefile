@@ -10,12 +10,21 @@ else
 OPTS = -Wall -W -O3 
 endif
 
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+
+
 ntripclient: ntripclient.c serial.c
 	$(CC) $(OPTS) ntripclient.c -o $@ $(LIBS)
 
 clean:
 	$(RM) ntripclient core*
 
+install: ntripclient
+	install -d $(DESTDIR)$(PREFIX)/bin/
+	install -m 771 ntripclient $(DESTDIR)$(PREFIX)/bin/
+	install -m 771 startntripclient.sh $(DESTDIR)$(PREFIX)/bin/
 
 archive:
 	zip -9 ntripclient.zip ntripclient.c makefile README serial.c

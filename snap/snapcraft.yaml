@@ -1,0 +1,60 @@
+name: ntripclient
+base: core22
+version: '1.51'
+summary: Ntrip Version 2.0 Command Line Client 
+description: |
+    Ntrip
+    -----
+    The ntripclient is an HTTP client based on 'Networked Transport
+    of RTCM via Internet Protocol' (Ntrip). This is an application-level 
+    protocol streaming Global Navigation Satellite System (GNSS) data over 
+    the Internet. Ntrip Version 1.0 is a generic, stateless protocol based 
+    on the Hypertext Transfer Protocol HTTP/1.1. The HTTP objects are 
+    enhanced to GNSS data streams.
+    
+    The primary motivation for Ntrip Version 2.0 is to develop a fully 
+    HTTP-compatible Internet protocol standard that would work with proxy 
+    servers and to add an optional data transport via UDP. Hence, one 
+    Ntrip Version 2.0 transport approach is still based on HTTP1.1 on top 
+    of TCP. The second Ntrip Version 2.0 transport approach is based on 
+    both, the Internet Standard Protocol RTSP (Real Time Streaming Protocol) 
+    for stream control on top of TCP and the Internet Standard Protocol RTP 
+    (Real Time Transport Protocol) for data transport on top of 
+    connectionless UDP.
+    
+    Ntrip is designed for disseminating differential correction data 
+    (e.g in the RTCM-104 format) or other kinds of GNSS streaming data to
+    stationary or mobile users over the Internet, allowing simultaneous PC,
+    Laptop, PDA, or receiver connections to a broadcasting host. Ntrip 
+    supports Wireless Internet access through Mobile IP Networks like GSM, 
+    GPRS, EDGE, or UMTS.
+    
+    Ntrip is implemented in three system software components: NtripClients, 
+    NtripServers and NtripCasters. The NtripCaster is the actual HTTP 
+    server program whereas NtripClient and NtripServer are acting as HTTP 
+    clients.
+    
+    ntripclient
+    -----------
+    This POSIX Ntrip client program is written under GNU General Public 
+    License in C programming language. The program reads data from an Ntrip 
+    Broadcaster and writes on standard output for further redirection 
+    of data to a file or COM-port. PLEASE NOTE THAT THIS PROGRAM VERSION
+    DOES NOT HANDLE POTENTIALLY OCCURRING INTERRUPTIONS OF COMMUNICATION
+    OR NETWORK CONGESTION SITUATIONS. Its distribution may stimulate
+    those intending to write their own client program.
+
+grade: stable
+confinement: strict
+
+parts:
+  ntripclient:
+    plugin: make
+    source: .
+
+apps:
+  ntripclient:
+    command: usr/local/bin/startntripclient.sh
+    daemon: simple
+    plugs: [network, network-bind, serial-port]
+
