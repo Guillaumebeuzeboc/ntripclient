@@ -6,8 +6,8 @@ NTRIPCLIENT_ARGS=""
 # arg2 is the name of parameter
 append_arg () {
   EXTRACTED_VALUE="$(snapctl get $2)"
-  if [ -z "$EXTRACTED_VALUE" ]; then
-    NTRIPCLIENT_ARGS="$NTRIPCLIENT_ARGS $1 $2"
+  if [ ! -z "$EXTRACTED_VALUE" ]; then
+    NTRIPCLIENT_ARGS="$NTRIPCLIENT_ARGS $1 $EXTRACTED_VALUE"
   else
     echo "No $2 parameter set. Not adding the option."
   fi
