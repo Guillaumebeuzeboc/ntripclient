@@ -56,5 +56,5 @@ apps:
   ntripclient:
     command: usr/local/bin/startntripclient.sh
     daemon: simple
-    plugs: [network, network-bind, serial-port]
+    plugs: [network, network-bind, serial-port, raw-usb]
 
