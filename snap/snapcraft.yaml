@@ -47,6 +47,18 @@ description: |
 grade: stable
 confinement: strict
 
+slots:
+  serial-ports-slot:
+    interface: custom-device
+    custom-device: serial-ports
+    devices:
+      - /dev/ttyAMA[0-9]*
+
+plugs:
+  serial-ports-plug:
+    interface: custom-device
+    custom-device: serial-ports
+
 parts:
   ntripclient:
     plugin: make
@@ -56,5 +68,5 @@ apps:
   ntripclient:
     command: usr/local/bin/startntripclient.sh
     daemon: simple
-    plugs: [network, network-bind, serial-port, raw-usb]
+    plugs: [network, network-bind, serial-port, raw-usb, serial-ports-plug]
 
