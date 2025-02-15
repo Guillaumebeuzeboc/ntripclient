@@ -15,7 +15,7 @@ append_arg () {
 
 # URL is the priority
 URL="$(snapctl get url)"
-if [ -z "$URL" ]; then
+if [ ! -z "$URL" ]; then
   NTRIPCLIENT_ARGS="$URL"
 else
   echo "url is not set so we pick options one by one"
